@@ -13,7 +13,7 @@ const LOCATIONS = vm.runInNewContext(
   fs.readFileSync(path.join(__dirname, "locations.js"), "utf8") + ";LOCATIONS");
 
 const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css" };
-const PUBLIC = new Set(["/index.html", "/style.css", "/game.js", "/locations.js"]);
+const PUBLIC = new Set(["/index.html", "/style.css", "/game.js", "/config.js"]);
 
 const server = http.createServer((req, res) => {
   let p = req.url.split("?")[0];

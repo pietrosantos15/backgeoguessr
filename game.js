@@ -63,7 +63,7 @@ function showIframePano(loc) {
 /* ---------- Rede ---------- */
 
 function connect(first) {
-  ws = new WebSocket(`${location.protocol === "https:" ? "wss" : "ws"}://${location.host}`);
+  ws = new WebSocket(window.SERVER_URL || `${location.protocol === "https:" ? "wss" : "ws"}://${location.host}`);
   ws.onopen = () => ws.send(JSON.stringify(first));
   ws.onmessage = (e) => onMessage(JSON.parse(e.data));
   ws.onclose = () => {
