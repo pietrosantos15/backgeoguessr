@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GeoGuessr</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Tela inicial -->
+  <section id="start" class="overlay">
+    <div class="card">
+      <h1>🌍 GeoGuessr</h1>
+      <p>Multiplayer de 1 a 4 jogadores. Descubra onde está, quem chegar mais perto ganha!</p>
+      <input id="name" type="text" maxlength="16" placeholder="Seu nome" autocomplete="off">
+      <input id="api-key" type="text" placeholder="Chave da Google Maps API (opcional)" autocomplete="off">
+      <p class="muted small">Sem chave, usa o embed sem chave do Google. A chave fica só no seu navegador.</p>
+      <p id="start-error" class="error"></p>
+      <button id="btn-create" class="primary">Criar sala</button>
+      <div class="join-row">
+        <input id="code" type="text" maxlength="4" placeholder="CÓDIGO" autocomplete="off">
+        <button id="btn-join" class="primary secondary">Entrar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lobby -->
+  <section id="lobby" class="overlay" hidden>
+    <div class="card">
+      <h2>Sala <span id="lobby-code" class="code"></span></h2>
+      <p class="muted">Passe o código para os amigos (máx. 4 jogadores).</p>
+      <ul id="lobby-players" class="players"></ul>
+      <button id="btn-begin" class="primary">Iniciar partida</button>
+      <p id="lobby-wait" class="muted" hidden>Aguardando o anfitrião iniciar…</p>
+    </div>
+  </section>
+
+  <!-- HUD -->
+  <header id="hud" hidden>
+    <div><span class="label">Rodada</span> <b id="hud-round">1/5</b></div>
+    <div><span class="label">Tempo</span> <b id="hud-time">120</b></div>
+    <ul id="hud-players"></ul>
+  </header>
+
+  <!-- Street View -->
+  <div id="pano-api" hidden></div>
+  <iframe id="pano" title="Street View" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+  <!-- Mapa de palpite -->
+  <div id="guess-box" hidden>
+    <div id="guess-map"></div>
+    <button id="btn-guess" class="primary" disabled>Selecione um ponto no mapa</button>
+  </div>
+
+  <!-- Resultado da rodada -->
+  <section id="result" class="overlay" hidden>
+    <div id="result-map"></div>
+    <div class="result-panel">
+      <h2 id="result-place"></h2>
+      <ul id="result-list" class="players"></ul>
+      <button id="btn-next" class="primary">Próxima rodada</button>
+      <p id="result-wait" class="muted" hidden>Aguardando o anfitrião…</p>
+    </div>
+  </section>
+
+  <!-- Fim de jogo -->
+  <section id="end" class="overlay" hidden>
+    <div class="card">
+      <h1 id="end-title">Fim de jogo!</h1>
+      <ol id="ranking" class="players"></ol>
+      <button id="btn-again" class="primary">Jogar novamente</button>
+      <p id="end-wait" class="muted" hidden>Aguardando o anfitrião…</p>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

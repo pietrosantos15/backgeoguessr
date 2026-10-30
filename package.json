@@ -1,0 +1,17 @@
+{
+  "name": "geoguessr",
+  "version": "1.0.0",
+  "description": "GeoGuessr multiplayer (até 4 jogadores)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "ws": "^8.22.0"
+  }
+}
